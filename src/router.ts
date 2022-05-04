@@ -2,6 +2,7 @@ import Router from '@koa/router';
 
 import AuthController from './controller/auth';
 import UserController from './controller/user';
+import NoticeController from './controller/notice';
 
 const router = new Router();
 
@@ -13,5 +14,10 @@ router.post('/auth/register', AuthController.register);
 router.get('/users', UserController.listUsers);
 router.get('/users/getinfo', UserController.showUserDetail);
 router.post('/users', UserController.updateUser);
+
+// 通知相关
+router.get('/notices', NoticeController.getNotices);
+router.post('/notices/new', NoticeController.createNotice);
+router.post('/notices/update', NoticeController.updateNotice);
 
 export default router;

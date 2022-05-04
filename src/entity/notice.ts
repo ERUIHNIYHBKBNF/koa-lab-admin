@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne } from 'typeorm';
-import { User } from './user';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 
 // https://typeorm.io/entities#column-options
 @Entity()
@@ -9,9 +8,6 @@ export class Notice {
 
   @Column()
   content: string;
-
-  @ManyToOne(type => User, user => user.notices)
-  user: User;
 
   @CreateDateColumn()
   createdAt: Date;

@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, ManyToMany } from 'typeorm';
-import { Notice } from './notice';
 import { Reservation } from './reservation';
 import { ReservationRecord } from './reservationRecord';
 
@@ -37,9 +36,6 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt: Date;
-
-  @OneToMany(type => Notice, notice => notice.user)
-  notices: Notice[];
 
   @OneToMany(type => Reservation, reservation => reservation.user)
   reservations: Reservation[];

@@ -1,4 +1,3 @@
-// src/controllers/user.ts
 import { Context } from 'koa';
 import { Manager } from '../server';
 import { User, UserRole } from '../entity/user';
