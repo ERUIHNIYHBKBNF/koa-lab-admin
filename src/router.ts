@@ -19,5 +19,6 @@ router.post('/users', UserController.updateUser);
 router.get('/notices', NoticeController.getNotices);
 router.post('/notices/new', NoticeController.createNotice);
 router.post('/notices/update', NoticeController.updateNotice);
+router.post('/notices/delete', NoticeController.deleteNotice);
 
 export default router;

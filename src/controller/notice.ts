@@ -23,7 +23,7 @@ export default class NoticeController {
       ctx.status = 401;
       return;
     }
-    if (!ctx.request.body) {
+    if (!ctx.request.body || !ctx.request.body.content) {
       ctx.status = 400;
       return;
     }
@@ -56,9 +56,34 @@ export default class NoticeController {
       ctx.status = 404;
       return;
     }
-    notice.content = ctx.request.body.content;
+    notice.content = ctx.request.body.content || notice.content;
     await noticeRepository.update(notice.id, notice);
     ctx.status = 200;
     ctx.body = notice;
+  }
+  // delete
+  public static async deleteNotice(ctx: Context) {
+    const sessionRepository = Manager.getRepository(Session);
+    const session = await sessionRepository.createQueryBuilder("session").leftJoinAndSelect("session.user", "user").where("session.id = :id", {id: ctx.cookies.get('session')}).getOne();
+    if (!session) {
+      ctx.status = 401;
+      return;
+    }
+    if (session.user.type != UserRole.ADMIN) {
+      ctx.status = 401;
+      return;
+    }
+    if (!ctx.request.body || !ctx.request.body.id) {
+      ctx.status = 400;
+      return;
+    }
+    const noticeRepository = Manager.getRepository(Notice);
+    const notice = await noticeRepository.findOneBy({id: ctx.request.body.id});
+    if (!notice) {
+      ctx.status = 404;
+      return;
+    }
+    await noticeRepository.createQueryBuilder().softDelete().where("id = :id", {id: ctx.request.body.id}).execute();
+    ctx.status = 200;
   }
 }
