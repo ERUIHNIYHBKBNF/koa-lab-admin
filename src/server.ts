@@ -1,13 +1,16 @@
 import Koa from 'koa';
 import cors from '@koa/cors';
-import bodyParser from 'koa-bodyparser';
-import { createConnection } from 'typeorm';
+import bodyParser from 'koa-body';
+import { DataSource  } from 'typeorm';
 import 'reflect-metadata';
 
 import logger from './logger';
 import router from './router';
 
-createConnection().then(() => {
+const dbconfig = require('../ormconfig.json');
+const dataSource = new DataSource(dbconfig);
+dataSource.initialize()
+.then(() => {
   // 初始化 Koa 应用实例
   const app = new Koa();
 
@@ -21,4 +24,8 @@ createConnection().then(() => {
 
   // 运行服务器
   app.listen(13875);
-}).catch((err: string) => console.log('TypeORM connection error:', err));
+})
+.catch((err) => {
+    console.error("Error during Data Source initialization", err)
+});
+export const Manager = dataSource.manager;
