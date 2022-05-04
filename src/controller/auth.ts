@@ -16,7 +16,7 @@ export default class AuthController {
     
     if (ctx.request.body.password == user.password) {
       const session = new Session();
-      session.userId = user.id;
+      session.user = user;
       await sessionRepository.save(session);
       ctx.cookies.set('session', session.id);
       ctx.status = 200;
