@@ -11,8 +11,7 @@ router.post('/auth/register', AuthController.register);
 
 // 用户信息相关
 router.get('/users', UserController.listUsers);
-router.get('/users/:id', UserController.showUserDetail);
-router.post('/users/:id', UserController.updateUser);
-router.delete('/users/:id', UserController.deleteUser);
+router.get('/users/getinfo', UserController.showUserDetail);
+router.post('/users', UserController.updateUser);
 
 export default router;
