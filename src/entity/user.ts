@@ -1,6 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, ManyToMany } from 'typeorm';
-import { Reservation } from './reservation';
-import { ReservationRecord } from './reservationRecord';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -36,12 +34,6 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt: Date;
-
-  @OneToMany(type => Reservation, reservation => reservation.user)
-  reservations: Reservation[];
-
-  @OneToMany(type => ReservationRecord, reservationRecord => reservationRecord.user)
-  reservationRecords: ReservationRecord[];
 
   @ManyToMany(type => User, user => user.students)
   teachers: User[];

@@ -3,6 +3,7 @@ import Router from '@koa/router';
 import AuthController from './controller/auth';
 import UserController from './controller/user';
 import NoticeController from './controller/notice';
+import DeviceController from './controller/device';
 
 const router = new Router();
 
@@ -17,8 +18,14 @@ router.post('/users', UserController.updateUser);
 
 // 通知相关
 router.get('/notices', NoticeController.getNotices);
-router.post('/notices/new', NoticeController.createNotice);
+router.post('/notices/create', NoticeController.createNotice);
 router.post('/notices/update', NoticeController.updateNotice);
 router.post('/notices/delete', NoticeController.deleteNotice);
+
+// 设备相关
+router.get('/devices', DeviceController.getDevices);
+router.post('/devices/create', DeviceController.createDevice);
+router.post('/devices/update', DeviceController.updateDevice);
+router.post('/devices/delete', DeviceController.deleteDevice);
 
 export default router;

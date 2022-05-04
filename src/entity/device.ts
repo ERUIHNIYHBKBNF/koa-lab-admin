@@ -1,6 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from 'typeorm';
-import { DeviceRecord } from './deviceRecord';
-import { Reservation } from './reservation';
 
 export enum DeviceStatus {
   ONLINE = 'online',
@@ -32,10 +30,4 @@ export class Device {
 
   @DeleteDateColumn()
   deletedAt: Date;
-
-  @OneToMany(type => DeviceRecord, record => record.device)
-  records: DeviceRecord[];
-
-  @OneToMany(type => Reservation, reservation => reservation.device)
-  reservations: Reservation[];
 }

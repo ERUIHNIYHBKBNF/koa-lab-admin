@@ -16,10 +16,10 @@ export class Reservation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => User, user => user.reservations)
+  @ManyToOne(type => User)
   user: User;
 
-  @ManyToOne(type => Device, device => device.reservations)
+  @ManyToOne(type => Device)
   device: Device;
 
   @Column({

@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from 'typeorm';
 import { Device } from './device';
 
-export enum DeviceStatus {
+export enum DeviceOperationStatus {
   BREAKDOWN = 'breakdown',
   ONLINE = 'online',
 };
@@ -12,15 +12,15 @@ export class DeviceRecord {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => Device, device => device.records)
+  @ManyToOne(type => Device)
   device: Device;
 
   @Column({
     type: 'enum',
-    enum: DeviceStatus,
-    default: DeviceStatus.ONLINE,
+    enum: DeviceOperationStatus,
+    default: DeviceOperationStatus.ONLINE,
   })
-  operation: DeviceStatus;
+  operation: DeviceOperationStatus;
 
   @CreateDateColumn()
   createdAt: Date;

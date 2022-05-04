@@ -13,7 +13,7 @@ export class ReservationRecord {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => User, user => user.reservationRecords)
+  @ManyToOne(type => User)
   user: User;
 
   @ManyToOne(type => Reservation, reservation => reservation.reservationRecords)
