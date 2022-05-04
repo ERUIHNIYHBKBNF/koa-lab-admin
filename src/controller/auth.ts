@@ -1,4 +1,3 @@
-// src/controllers/auth.ts
 import { Context } from 'koa';
 
 export default class AuthController {

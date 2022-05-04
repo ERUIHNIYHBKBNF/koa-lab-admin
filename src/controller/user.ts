@@ -1,4 +1,3 @@
-// src/controllers/user.ts
 import { Context } from 'koa';
 
 export default class UserController {

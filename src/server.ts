@@ -8,7 +8,7 @@ import router from './router';
 const app = new Koa();
 
 // 注册中间件
-app.use(logger());
+app.use(logger()); // 打印请求日志
 app.use(cors());
 app.use(bodyParser());
 

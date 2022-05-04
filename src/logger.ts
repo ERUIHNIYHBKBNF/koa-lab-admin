@@ -1,4 +1,3 @@
-// src/logger.ts
 import { Context } from 'koa';
 
 export default function logger() {
