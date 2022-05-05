@@ -35,14 +35,6 @@ export class User {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  // @ManyToMany(type => User, user => user.students, { cascade: true })
-  // @JoinTable({
-  //   name: "mentor",
-  //   joinColumn: { name: "sid", referencedColumnName: "id" },
-  //   inverseJoinColumn: { name: "tid", referencedColumnName: "id" },
-  // })
-  // teachers: User[];
-
   @ManyToMany(type => User, user => user, { cascade: true })
   @JoinTable({
     name: "mentor",
