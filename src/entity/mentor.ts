@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn } from 'typeorm';
 
 // https://typeorm.io/entities#column-options
-@Entity()
+// @Entity()
 export class Mentor {
   @PrimaryColumn()
   sid: number;

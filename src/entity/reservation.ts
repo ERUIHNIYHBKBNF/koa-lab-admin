@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToOne, OneToMany } from 'typeorm';
 import { User } from './user';
 import { Device } from './device';
-import { ReservationRecord } from './reservationRecord';
 
 export enum ReservationStatus {
   PENDING_TEACHER = 'pending_teacher',
   PENDING = 'pending',
   APPROVED = 'approved',
   REJECTED = 'rejected',
+  CANCELLED = 'cancelled',
 };
 
 // https://typeorm.io/entities#column-options
@@ -34,10 +34,4 @@ export class Reservation {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
-
-  @OneToMany(type => ReservationRecord, record => record.reservation)
-  reservationRecords: ReservationRecord[];
 }

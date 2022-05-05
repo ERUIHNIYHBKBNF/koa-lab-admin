@@ -12,7 +12,6 @@ export default class AuthController {
       ctx.status = 404;
       return;
     }
-    console.log(user);
     
     if (ctx.request.body.password == user.password) {
       const session = new Session();

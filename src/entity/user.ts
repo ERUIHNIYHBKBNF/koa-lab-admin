@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -35,9 +35,19 @@ export class User {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @ManyToMany(type => User, user => user.students)
-  teachers: User[];
+  // @ManyToMany(type => User, user => user.students, { cascade: true })
+  // @JoinTable({
+  //   name: "mentor",
+  //   joinColumn: { name: "sid", referencedColumnName: "id" },
+  //   inverseJoinColumn: { name: "tid", referencedColumnName: "id" },
+  // })
+  // teachers: User[];
 
-  @ManyToMany(type => User, user => user.teachers)
+  @ManyToMany(type => User, user => user, { cascade: true })
+  @JoinTable({
+    name: "mentor",
+    joinColumn: { name: "tid", referencedColumnName: "id" },
+    inverseJoinColumn: { name: "sid", referencedColumnName: "id" },
+  })
   students: User[];
 }

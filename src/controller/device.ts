@@ -59,10 +59,10 @@ export default class UserController {
     }
     device.name = ctx.request.body.name || device.name;
     if (ctx.request.body.status === DeviceStatus.BROKEN) {
-      Manager.transaction(async (transaction) => {
+      Manager.transaction(async (manager) => {
         device.status = ctx.request.body.status;
         await deviceRepository.update(device.id, device);
-        const deviceRecordRepository = transaction.getRepository(DeviceRecord);
+        const deviceRecordRepository = manager.getRepository(DeviceRecord);
         const deviceRecord = new DeviceRecord();
         deviceRecord.device = device;
         deviceRecord.operation = DeviceOperationStatus.BREAKDOWN;

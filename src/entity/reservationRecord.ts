@@ -14,9 +14,9 @@ export class ReservationRecord {
   id: number;
 
   @ManyToOne(type => User)
-  user: User;
+  operator: User;
 
-  @ManyToOne(type => Reservation, reservation => reservation.reservationRecords)
+  @ManyToOne(type => Reservation)
   reservation: Reservation;
 
   @Column({
